@@ -1,0 +1,88 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# ************************************************************************************************
+Screens:
+  TechnicianScreen:
+    Properties:
+      Fill: =RGBA(237, 234, 226, 1)
+    Children:
+      - TechTitle:
+          Control: Label@2.5.1
+          Properties:
+            Color: =RGBA(15, 27, 46, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Bold
+            Height: =42
+            Size: =18
+            Text: ="VMI medewerker"
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =20
+      - BtnMijnProjecten:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Color: =RGBA(255, 222, 0, 1)
+            Fill: =RGBA(5, 30, 80, 1)
+            Height: =44
+            OnSelect: =Set(varMonteurFilter, "mijn")
+            Text: ="Mijn projecten"
+            Width: =(Parent.Width - 50) / 2
+            X: =20
+            Y: =70
+      - BtnAlleTonen:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Color: =RGBA(5, 30, 80, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =44
+            OnSelect: =Set(varMonteurFilter, "alle")
+            Text: ="Alles tonen"
+            Width: =(Parent.Width - 50) / 2
+            X: =30 + (Parent.Width - 50) / 2
+            Y: =70
+      - GalTechProjects:
+          Control: Gallery@2.15.0
+          Properties:
+            Height: =Parent.Height - 140
+            Items: |-
+              =SortByColumns(
+                Filter(colProjecten, varMonteurFilter = "alle" || Status <> "Afgerond"),
+                "DatumStart", Ascending)
+            Layout: =Layout.Vertical
+            TemplateSize: =70
+            Width: =Parent.Width
+            X: =0
+            Y: =120
+          Children:
+            - TechProjLabel:
+                Control: Label@2.5.1
+                Properties:
+                  Height: =Parent.TemplateHeight - 20
+                  Text: =ThisItem.KlantNaam & " - " & ThisItem.Adres
+                  Width: =Parent.TemplateWidth - 40
+                  X: =20
+                  Y: =10
+            - BtnTechOpen:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  Fill: =RGBA(255, 255, 255, 1)
+                  Height: =1
+                  OnSelect: |-
+                    =Set(varSelProject, ThisItem);
+                    Navigate(WizardScreen, ScreenTransition.Fade)
+                  Text: ="Start werkbon"
+                  Width: =1
+                  X: =0
+                  Y: =0
+      - BtnTechBack:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Color: =RGBA(5, 30, 80, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =48
+            OnSelect: =Back()
+            Text: ="Terug"
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =Parent.Height - 70

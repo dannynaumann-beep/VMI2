@@ -1,0 +1,56 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# ************************************************************************************************
+Screens:
+  DashboardScreen:
+    Properties:
+      Fill: =RGBA(237, 234, 226, 1)
+    Children:
+      - DashTitle:
+          Control: Label@2.5.1
+          Properties:
+            Color: =RGBA(15, 27, 46, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Bold
+            Height: =42
+            Size: =18
+            Text: ="Project KPI"
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =20
+      - LblKpiProjecten:
+          Control: Label@2.5.1
+          Properties:
+            Height: =32
+            Text: ="Projecten: " & CountRows(colProjecten)
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =70
+      - LblKpiOpen:
+          Control: Label@2.5.1
+          Properties:
+            Height: =32
+            Text: ="Open logboekregels: " & CountRows(Filter(colLogboek, Status = "Open"))
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =110
+      - LblKpiAfgerond:
+          Control: Label@2.5.1
+          Properties:
+            Height: =32
+            Text: ="Afgeronde logboekregels: " & CountRows(Filter(colLogboek, Status = "Afgerond"))
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =150
+      - BtnDashBack:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Color: =RGBA(5, 30, 80, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =48
+            OnSelect: =Back()
+            Text: ="Terug"
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =200

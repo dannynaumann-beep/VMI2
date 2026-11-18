@@ -1,0 +1,80 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# ************************************************************************************************
+Screens:
+  HomeScreen:
+    Properties:
+      Fill: =RGBA(237, 234, 226, 1)
+    Children:
+      - HomeHeader:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            Color: =RGBA(255, 222, 0, 1)
+            Fill: =RGBA(5, 30, 80, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Bold
+            Height: =92
+            Size: =20
+            Text: ="RUBIX VMI PROJECT OPLEVERDOCUMENT"
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =20
+      - HomePrompt:
+          Control: Label@2.5.1
+          Properties:
+            Color: =RGBA(15, 27, 46, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Bold
+            Height: =42
+            Size: =16
+            Text: ="Kies de taak"
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =130
+      - RoleManager:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Color: =RGBA(255, 222, 0, 1)
+            Fill: =RGBA(5, 30, 80, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Bold
+            Height: =62
+            OnSelect: |-
+              =Set(varRole, "manager");
+              Navigate(ProjectsScreen, ScreenTransition.Fade)
+            Size: =15
+            Text: ="Projectmanager"
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =180
+      - RoleTechnician:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Color: =RGBA(255, 222, 0, 1)
+            Fill: =RGBA(5, 30, 80, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Bold
+            Height: =62
+            OnSelect: |-
+              =Set(varRole, "vmi");
+              Navigate(TechnicianScreen, ScreenTransition.Fade)
+            Size: =15
+            Text: ="VMI medewerker"
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =260
+      - HomeLogboek:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Color: =RGBA(5, 30, 80, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Open Sans'
+            Height: =52
+            OnSelect: =Navigate(LogbookScreen, ScreenTransition.Fade)
+            Size: =14
+            Text: ="Logboek bekijken - eerder opgeleverde klussen"
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =340

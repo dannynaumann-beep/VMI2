@@ -1,0 +1,20 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# ************************************************************************************************
+App:
+  Properties:
+    Theme: =PowerAppsTheme
+    StartScreen: =HomeScreen
+    OnStart: |-
+      =Set(varRole, "");
+      Set(varWizardStep, 1);
+      Set(varLogStatus, "open");
+      Set(varMonteurFilter, "");
+      Set(varSelProject, Blank());
+      Set(varSelLog, Blank());
+      ClearCollect(colProjecten, Projecten);
+      ClearCollect(colLogboek, Logboek);
+      ClearCollect(colManagers, Managers);
+      ClearCollect(colMedewerkers, Medewerkers);
+      ClearCollect(colTaken, Taken)

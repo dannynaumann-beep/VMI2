@@ -1,0 +1,57 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# ************************************************************************************************
+Screens:
+  DeleteScreen:
+    Properties:
+      Fill: =RGBA(237, 234, 226, 1)
+    Children:
+      - DelTitle:
+          Control: Label@2.5.1
+          Properties:
+            Color: =RGBA(15, 27, 46, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Bold
+            Height: =42
+            Size: =18
+            Text: ="Project verwijderen"
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =20
+      - DrpDelProject:
+          Control: Classic/DropDown@2.3.1
+          Properties:
+            Items: =colProjecten
+            DisplayFields: =["KlantNaam"]
+            Height: =44
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =70
+      - BtnDelProject:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(180, 30, 30, 1)
+            Height: =48
+            OnSelect: |-
+              =ForAll(Filter(Logboek, Project = DrpDelProject.Selected.Title), Remove(Logboek, ThisRecord));
+              Remove(Projecten, DrpDelProject.Selected);
+              ClearCollect(colProjecten, Projecten);
+              ClearCollect(colLogboek, Logboek);
+              Navigate(ProjectsScreen, ScreenTransition.Fade)
+            Text: ="Verwijderen"
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =140
+      - BtnDelBack:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Color: =RGBA(5, 30, 80, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =48
+            OnSelect: =Back()
+            Text: ="Annuleren"
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =200

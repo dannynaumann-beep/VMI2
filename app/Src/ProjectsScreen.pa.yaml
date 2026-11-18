@@ -1,0 +1,83 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# ************************************************************************************************
+Screens:
+  ProjectsScreen:
+    Properties:
+      Fill: =RGBA(237, 234, 226, 1)
+    Children:
+      - ProjectsTitle:
+          Control: Label@2.5.1
+          Properties:
+            Color: =RGBA(15, 27, 46, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Bold
+            Height: =42
+            Size: =18
+            Text: ="Projecten bewerken"
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =20
+      - BtnNewProject:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Color: =RGBA(255, 222, 0, 1)
+            Fill: =RGBA(5, 30, 80, 1)
+            Height: =48
+            OnSelect: |-
+              =Set(varSelProject, Blank());
+              Navigate(ProjectFormScreen, ScreenTransition.Fade)
+            Text: ="+ Nieuw project"
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =70
+      - BtnKPI:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Color: =RGBA(5, 30, 80, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =48
+            OnSelect: =Navigate(DashboardScreen, ScreenTransition.Fade)
+            Text: ="Project KPI"
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =126
+      - BtnDelete:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(180, 35, 24, 1)
+            Height: =48
+            OnSelect: =Navigate(DeleteScreen, ScreenTransition.Fade)
+            Text: ="Project verwijderen"
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =182
+      - ProjectsGallery:
+          Control: Gallery@2.15.0
+          Properties:
+            Height: =Parent.Height - 260
+            Items: =SortByColumns(colProjecten, "DatumStart", Descending)
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =240
+          Children:
+            - ProjectName:
+                Control: Label@2.5.1
+                Properties:
+                  Font: =Font.'Open Sans'
+                  FontWeight: =FontWeight.Semibold
+                  Text: =ThisItem.KlantNaam
+                  Width: =Parent.TemplateWidth - 20
+                  X: =10
+                  Y: =10
+            - ProjectOpen:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  OnSelect: |-
+                    =Set(varSelProject, ThisItem);
+                    Navigate(ProjectDetailScreen, ScreenTransition.Fade)
+                  Text: ="Openen"
+                  X: =Parent.TemplateWidth - 130
+                  Y: =40

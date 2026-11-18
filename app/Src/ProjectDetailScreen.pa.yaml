@@ -1,0 +1,51 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# ************************************************************************************************
+Screens:
+  ProjectDetailScreen:
+    Properties:
+      Fill: =RGBA(237, 234, 226, 1)
+    Children:
+      - DetailTitle:
+          Control: Label@2.5.1
+          Properties:
+            Color: =RGBA(15, 27, 46, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Bold
+            Height: =42
+            Size: =18
+            Text: =varSelProject.KlantNaam
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =20
+      - DetailAdres:
+          Control: Label@2.5.1
+          Properties:
+            Height: =32
+            Text: =varSelProject.Adres
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =66
+      - BtnEditProject:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Color: =RGBA(255, 222, 0, 1)
+            Fill: =RGBA(5, 30, 80, 1)
+            Height: =48
+            OnSelect: =Navigate(ProjectFormScreen, ScreenTransition.Fade)
+            Text: ="Project bewerken"
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =110
+      - BtnBackDetail:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Color: =RGBA(5, 30, 80, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =48
+            OnSelect: =Back()
+            Text: ="Terug"
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =170
