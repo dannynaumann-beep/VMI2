@@ -67,6 +67,30 @@ Screens:
             Width: =Parent.Width - 40
             X: =20
             Y: =100
+      - AddPicWizFoto:
+          Control: Classic/AddPicture@2.1.0
+          Properties:
+            Height: =240
+            Visible: =varWizardStep = 2
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =100
+      - InkMonteur:
+          Control: Classic/PenInput@2.0.0
+          Properties:
+            Height: =160
+            Visible: =varWizardStep = 5
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =100
+      - InkKlant:
+          Control: Classic/PenInput@2.0.0
+          Properties:
+            Height: =160
+            Visible: =varWizardStep = 5
+            Width: =Parent.Width - 40
+            X: =20
+            Y: =280
       - BtnWizPrev:
           Control: Classic/Button@2.2.0
           Properties:
@@ -94,7 +118,14 @@ Screens:
                   Opmerking: InWizOpmerking.Text,
                   Vervolgactie: InWizVervolg.Text,
                   Status: "Open",
-                  Datum: Now()
+                  Datum: Now(),
+                  Attachments: Filter(
+                    Table(
+                      {Name: "sigMonteur.png", Value: InkMonteur.Image},
+                      {Name: "sigKlant.png", Value: InkKlant.Image},
+                      {Name: "foto1.png", Value: AddPicWizFoto.Image}
+                    ),
+                    !IsBlank(Value))
                 });
                 Refresh(Logboek);
                 ClearCollect(colLogboek, Logboek);
